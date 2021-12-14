@@ -2,11 +2,11 @@ const form = document.querySelector('#form');
 const name = document.querySelector('#name');
 const email = document.querySelector('#email');
 const msg = document.querySelector('.msg');
-const btn = document.querySelector('.btn');
 const users = document.querySelector('.list-items');
 
-// create list on click
+//add event listener
 form.addEventListener('submit', onSubmit);
+
 function onSubmit(e) {
   e.preventDefault();
 
@@ -14,29 +14,28 @@ function onSubmit(e) {
     msg.innerHTML = 'Please enter all fields';
     msg.classList.add('error-msg');
 
-    setTimeout(() => msg.remove(), 3000);
+    setTimeout(() => msg.remove(), 2000);
   }
 
-  //ELSE
+  //add list items
   else {
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(`${name.value} : ${email.value}`));
     li.className = 'item';
     users.appendChild(li);
 
-    // create button
+    //create a delete button
     const button = document.createElement('button');
     button.appendChild(document.createTextNode('Delete'));
     button.className = 'button';
-    // append to list
-    li.appendChild(button);
+    li.append(button);
 
-    //delete button
+    //add event listener to button
     button.addEventListener('click', (e) => {
       li.remove();
     });
 
-    // clear form fiels
+    //clear field
     name.value = '';
     email.value = '';
   }
